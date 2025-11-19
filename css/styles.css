@@ -14,7 +14,7 @@ body{font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue'
 .logo{height:120px}
 
 /* Navigation row placed under the header border (blue line). Left aligned. */
-.nav-row{display:flex; justify-content:flex-start; align-items:center; gap:0; padding:10px 24px; background:var(--bg); width:100%; box-sizing:border-box}
+.nav-row{display:flex; justify-content:flex-start; align-items:center; gap:0; padding:10px 24px; background: var(--primary); width:100%; box-sizing:border-box}
 
 /* Nav buttons: left aligned in a single horizontal row */
 .nav-row .nav-item{display:inline-flex; align-items:center; background:var(--primary); color:white; padding:8px 18px; border-radius:6px; text-decoration:none; font-weight:600}
@@ -22,12 +22,17 @@ body{font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue'
 
 /* thin vertical separator between buttons (white line on blue buttons) */
 .nav-row .nav-item + .nav-item{margin-left:8px; position:relative}
-.nav-row .nav-item + .nav-item::before{content:""; position:absolute; left:-8px; top:6px; bottom:6px; width:2px; background:rgba(255,255,255,0.25); border-radius:1px}
+.nav-row .nav-item + .nav-item::before{content:""; position:absolute; left:-8px; top:6px; bottom:6px; width:2px; background:rgba(255,255,255,0.06); border-radius:1px}
 
 /* Specific rule for index page nav to ensure buttons are pinned to the very left
   of the page (useful if you want no horizontal centering). Adjust padding-left
   value to move them away from the edge. */
 .nav-row.nav-left{padding-left:12px; justify-content:flex-start}
+
+/* pastel blue strip under the nav buttons to match the design sketch */
+.nav-row{position:relative}
+.nav-row::after{content:""; position:absolute; left:0; right:0; bottom:0; height:6px; background: var(--primary); pointer-events:none}
+.nav-row .nav-item{position:relative; z-index:2}
 
 /* If you want the nav to look like a single bar under the blue line, use the
   white background above and keep the header's blue border. The links are
