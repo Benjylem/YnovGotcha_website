@@ -1,0 +1,66 @@
+:root{
+  /* MAIN COLOURS - change these to match your logo colour */
+  --primary: #2b6fd6; /* replace with your logo's color (hex) */
+  --accent: #000000; /* black for text/accents */
+  --bg: #ffffff;
+  --muted: #f3f6fb;
+}
+
+/* Very simple, easy-to-read styles for a beginner */
+*{box-sizing: border-box}
+body{font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0; color:var(--accent); background:var(--bg)}
+
+.site-header{display:flex; align-items:center; justify-content:center; padding:18px 24px; border-bottom:4px solid var(--primary); background:var(--accent);}
+.logo{height:120px}
+
+/* Navigation row placed under the header border (blue line). Left aligned. */
+.nav-row{display:flex; justify-content:flex-start; align-items:center; gap:0; padding:10px 24px; background:var(--bg); width:100%; box-sizing:border-box}
+
+/* Nav buttons: left aligned in a single horizontal row */
+.nav-row .nav-item{display:inline-flex; align-items:center; background:var(--primary); color:white; padding:8px 18px; border-radius:6px; text-decoration:none; font-weight:600}
+.nav-row .nav-item:hover{opacity:0.95}
+
+/* thin vertical separator between buttons (white line on blue buttons) */
+.nav-row .nav-item + .nav-item{margin-left:8px; position:relative}
+.nav-row .nav-item + .nav-item::before{content:""; position:absolute; left:-8px; top:6px; bottom:6px; width:2px; background:rgba(255,255,255,0.25); border-radius:1px}
+
+/* Specific rule for index page nav to ensure buttons are pinned to the very left
+  of the page (useful if you want no horizontal centering). Adjust padding-left
+  value to move them away from the edge. */
+.nav-row.nav-left{padding-left:12px; justify-content:flex-start}
+
+/* If you want the nav to look like a single bar under the blue line, use the
+  white background above and keep the header's blue border. The links are
+  left-aligned (start of the bar). Change padding-left above to move them more */
+
+/* keep older selector names for compatibility if present */
+.main-nav{display:none}
+
+.home-main{padding:20px}
+.hero{background:linear-gradient(90deg, rgba(43,111,214,0.08), rgba(43,111,214,0.02)); padding:26px; border-radius:8px; margin-bottom:18px}
+.hero h1{margin:0 0 6px 0}
+
+.presentation-preview{background:var(--bg); padding:12px 0}
+.presentation-preview .page-wrap{background:var(--bg)}
+
+.quick-links{display:flex; gap:12px; flex-wrap:wrap}
+.card{flex:1 1 220px; border:1px solid #e6eefb; padding:14px; border-radius:8px; background:var(--muted)}
+.card h3{margin:0 0 6px 0}
+.card a{color:var(--primary); text-decoration:none}
+
+.site-footer{padding:16px 24px; border-top:1px solid #eee; text-align:center; font-size:14px; color:#666}
+
+/* Pages content area */
+.page-wrap{max-width:1000px; margin:18px auto; padding:20px}
+.edit-area{min-height:400px; border:2px dashed #ddd; padding:14px; border-radius:8px; background:#fff; overflow:auto}
+
+/* Helpful, visible hints for a beginner */
+.hint{font-size:13px; color:#666; margin-top:8px}
+
+/* Responsive */
+@media (max-width:640px){
+  .site-header{flex-direction:column; align-items:flex-start}
+  .logo{height:48px}
+  .nav-item{padding:8px 10px}
+  .quick-links{flex-direction:column}
+}
