@@ -3,50 +3,62 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Simple Gotcha Website</title>
+    <title>GOTCHA</title>
     <link rel="stylesheet" href="css/styles.css">
   </head>
   <body>
-    <!--
-      Simple site for beginners.
-      - Change colors in `css/styles.css` (CSS variables at top).
-      - Put your real logo in `img/logo.svg` and update the <img> src.
-      - Pages are in `pages/` and are simple to edit.
-    -->
-
     <header class="site-header">
-      <div class="logo-wrap">
-        <!-- Centered larger logo. Uses svg/Logo.svg as requested. If that file is missing,
-             the onerror fallback will use img/logo-placeholder.svg -->
-        <img src="svg/Logo.svg" alt="Logo" class="logo" onerror="this.onerror=null;this.src='img/logo-placeholder.svg'">
-      </div>
+      <a class="logo-wrap" href="index.html">
+        <img src="svg/Logo.svg" alt="GOTCHA" class="logo" onerror="this.onerror=null;this.src='img/logo-placeholder.svg'">
+      </a>
+      <nav class="nav-row nav-left">
+        <a href="pages/video.html" class="nav-item">Vidéo</a>
+        <a href="pages/actualite.html" class="nav-item">Actualité</a>
+        <a href="pages/histoire.html" class="nav-item">Histoire</a>
+        <a href="pages/contact.html" class="nav-item">Contact</a>
+      </nav>
     </header>
 
-    <!-- Navigation row placed just under the blue line (header border). -->
-    <nav class="nav-row nav-left">
-      <a href="pages/presentation.html" class="nav-item">Présentation</a>
-      <a href="pages/rubrique1.html" class="nav-item">Rubrique 1</a>
-      <a href="pages/team.html" class="nav-item">Rubrique 2</a>
-    </nav>
-
     <main class="home-main">
-      <!-- Presentation section placed under the nav as requested -->
-      <section class="presentation-preview">
-        <div class="page-wrap">
-          <h2>Présentation</h2>
-          <p class="hint">Cette zone est éditable : cliquez sur "Présentation" dans la navigation pour ouvrir la page complète, ou éditez `pages/presentation.html` pour modifier ce contenu.</p>
+      <section class="hero">
+        <div class="hero-logo">
+          <img src="svg/Logo.svg" alt="GOTCHA" onerror="this.onerror=null;this.src='img/logo-placeholder.svg'">
+        </div>
+        <p class="hero-sub">GOTCHA</p>
+      </section>
 
-          <div class="edit-area">
-            <h3>Mon titre</h3>
-            <p>Écrivez votre texte ici. Vous pouvez coller des paragraphes et des images.</p>
-            <img src="img/photo-placeholder.png" alt="Photo" style="max-width:320px; display:block; margin-top:12px">
+      <section class="explainer">
+        <div class="media-grid">
+          <div class="media-box">Vidéo à placer ici</div>
+          <div class="explainer-text">Texte à personnaliser pour expliquer le groupe GOTCHA</div>
+          <div class="media-box">Vidéo à placer ici</div>
+        </div>
+      </section>
+
+      <section class="teams">
+        <div class="teams-header">
+          <h2>Teams</h2>
+          <p>Remplace ce texte pour présenter chaque équipe</p>
+        </div>
+        <div class="team-list">
+          <div class="team-card">
+            <div class="team-avatar"></div>
+            <div class="team-text">Texte modifiable pour l'équipe 1</div>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar"></div>
+            <div class="team-text">Texte modifiable pour l'équipe 2</div>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar"></div>
+            <div class="team-text">Texte modifiable pour l'équipe 3</div>
           </div>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <p>© Votre site • Modifiez les fichiers dans le dossier du projet.</p>
+      <p>© GOTCHA</p>
     </footer>
   </body>
 </html>
