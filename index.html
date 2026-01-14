@@ -29,9 +29,26 @@
 
       <section class="explainer">
         <div class="media-grid">
-          <div class="media-box">Vidéo à placer ici</div>
-          <div class="explainer-text">Texte à personnaliser pour expliquer le groupe GOTCHA</div>
-          <div class="media-box">Vidéo à placer ici</div>
+          <div class="video-carousel">
+            <button class="carousel-btn prev" onclick="changeVideo(-1)">‹</button>
+            <div class="video-container" id="videoContainer">
+              <iframe id="videoFrame" width="100%" height="240" src="https://www.youtube.com/embed/4dVbEoPTieg" title="Vidéo GOTCHA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <button class="carousel-btn next" onclick="changeVideo(1)">›</button>
+            <div class="video-counter" id="videoCounter">1 / 5</div>
+          </div>
+          <div class="explainer-text">On est GOTCHA, le média étudiant sur les Ydays. 
+          Ici, on explique les projets et on rend tout ça fun et simple à comprendre. 
+          On fait des vidéos, des micro-trottoirs, des formats humour et des livestreams… Bref, on centralise tout pour que t'aies toutes les infos sur les Ydays au même endroit. 
+          On est vous, pour là.</div>
+          <div class="video-carousel">
+            <button class="carousel-btn prev" onclick="changeVideo(-1)">‹</button>
+            <div class="video-container" id="videoContainer2">
+              <iframe id="videoFrame2" width="100%" height="240" src="https://www.youtube.com/embed/4dVbEoPTieg" title="Vidéo GOTCHA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <button class="carousel-btn next" onclick="changeVideo(1)">›</button>
+            <div class="video-counter" id="videoCounter2">1 / 5</div>
+          </div>
         </div>
       </section>
 
@@ -76,5 +93,48 @@
     <footer class="site-footer">
       <p>© GOTCHA</p>
     </footer>
+
+    <script>
+      const videos = [
+        "4dVbEoPTieg",
+        "dQw4w9WgXcQ",
+        "jNQXAC9IVRw",
+        "9bZkp7q19f0",
+        "kJQP7kiw9Fk"
+      ];
+      
+      let currentVideoIndex1 = 0;
+      let currentVideoIndex2 = 0;
+
+      function changeVideo(direction, containerNum = 1) {
+        const containerNum2 = containerNum === 1 ? 2 : 1;
+        const frameId = containerNum === 1 ? "videoFrame" : "videoFrame2";
+        const counterId = containerNum === 1 ? "videoCounter" : "videoCounter2";
+        let currentIndex = containerNum === 1 ? currentVideoIndex1 : currentVideoIndex2;
+        
+        currentIndex = (currentIndex + direction + videos.length) % videos.length;
+        
+        if (containerNum === 1) currentVideoIndex1 = currentIndex;
+        else currentVideoIndex2 = currentIndex;
+        
+        document.getElementById(frameId).src = `https://www.youtube.com/embed/${videos[currentIndex]}`;
+        document.getElementById(counterId).textContent = `${currentIndex + 1} / ${videos.length}`;
+      }
+
+      function attachListeners() {
+        const prevBtns = document.querySelectorAll('.carousel-btn.prev');
+        const nextBtns = document.querySelectorAll('.carousel-btn.next');
+        
+        prevBtns.forEach((btn, index) => {
+          btn.onclick = () => changeVideo(-1, index + 1);
+        });
+        
+        nextBtns.forEach((btn, index) => {
+          btn.onclick = () => changeVideo(1, index + 1);
+        });
+      }
+
+      attachListeners();
+    </script>
   </body>
 </html>
