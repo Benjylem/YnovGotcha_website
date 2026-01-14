@@ -1,54 +1,53 @@
 :root{
   --primary:#000000;
-  --surface:#1a1a1a;
-  --card:#2d2d2d;
   --accent:#2b6fd6;
   --text:#000000;
   --text-light:#ffffff;
-  --border:#cccccc;
-  --muted:#666666;
+  --border:#333333;
+  --muted:#555555;
+  --light-bg:#fafafa;
 }
 
 *{box-sizing:border-box}
-body{margin:0; font-family:system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color:var(--text); background:#f5f5f5}
+body{margin:0; font-family:system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color:var(--text); background:var(--light-bg)}
 
 a{color:inherit; text-decoration:none}
 
-.site-header{display:flex; flex-direction:column; align-items:center; gap:16px; padding:20px; background:#ffffff; border-bottom:3px solid var(--accent); position:sticky; top:0; z-index:10; box-shadow:0 2px 8px rgba(0,0,0,0.1)}
+.site-header{display:flex; flex-direction:column; align-items:center; gap:14px; padding:18px 20px; background:#ffffff; border-bottom:4px solid var(--accent); position:sticky; top:0; z-index:10; box-shadow:0 2px 6px rgba(0,0,0,0.12)}
 .logo-wrap{display:inline-flex; justify-content:center; align-items:center}
-.logo{height:100px; width:auto; object-fit:contain}
+.logo{height:90px; width:auto; object-fit:contain}
 
-.nav-row{display:flex; gap:10px; width:100%; justify-content:center; flex-wrap:wrap}
-.nav-item{padding:10px 20px; background:#ffffff; color:var(--accent); border:2px solid var(--accent); border-radius:8px; font-weight:700; letter-spacing:0.5px; transition:all 0.2s ease; cursor:pointer}
-.nav-item:hover{background:var(--accent); color:#ffffff; transform:translateY(-2px); box-shadow:0 4px 12px rgba(43,111,214,0.3)}
+.nav-row{display:flex; gap:8px; width:100%; justify-content:center; flex-wrap:wrap}
+.nav-item{padding:9px 18px; background:#ffffff; color:var(--accent); border:2px solid var(--accent); border-radius:6px; font-weight:700; font-size:14px; letter-spacing:0.4px; transition:all 0.2s ease; cursor:pointer}
+.nav-item:hover{background:var(--accent); color:#ffffff; transform:translateY(-2px); box-shadow:0 4px 10px rgba(43,111,214,0.25)}
 .nav-left{justify-content:center}
 
-.home-main{display:flex; flex-direction:column; gap:32px; padding:30px 20px; max-width:1200px; margin:0 auto 48px}
+.home-main{display:flex; flex-direction:column; gap:28px; padding:28px 20px; max-width:1100px; margin:0 auto 40px}
 
-.hero{background:#ffffff; border:none; border-radius:12px; padding:50px 20px; display:flex; flex-direction:column; align-items:center; gap:20px; text-align:center; box-shadow:0 4px 12px rgba(0,0,0,0.08)}
-.hero-logo img{width:260px; height:auto; filter:drop-shadow(0 4px 8px rgba(0,0,0,0.15))}
-.hero-sub{font-size:32px; letter-spacing:3px; text-transform:uppercase; margin:0; color:var(--accent); font-weight:800}
+.hero{background:#ffffff; border-top:5px solid var(--accent); border-radius:8px; padding:45px 20px; display:flex; flex-direction:column; align-items:center; gap:18px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.1)}
+.hero-logo img{width:240px; height:auto; filter:drop-shadow(0 2px 6px rgba(0,0,0,0.2))}
+.hero-sub{font-size:30px; letter-spacing:2px; text-transform:uppercase; margin:0; color:var(--accent); font-weight:900}
 
-.explainer{background:#ffffff; border:none; border-radius:12px; padding:30px; box-shadow:0 4px 12px rgba(0,0,0,0.08)}
-.media-grid{display:grid; grid-template-columns:1fr 1.1fr 1fr; gap:20px; align-items:center}
-.media-box{background:#f9f9f9; border:2px dashed var(--border); border-radius:12px; padding:20px; text-align:center; color:var(--muted); min-height:220px; display:flex; align-items:center; justify-content:center; font-weight:600}
-.explainer-text{background:#f0f7ff; border:1px solid rgba(43,111,214,0.2); border-radius:12px; padding:24px; text-align:center; font-size:18px; line-height:1.8; color:var(--text); min-height:220px; display:flex; align-items:center; justify-content:center}
+.explainer{background:#ffffff; border-left:5px solid var(--accent); border-radius:8px; padding:28px; box-shadow:0 2px 8px rgba(0,0,0,0.1)}
+.media-grid{display:grid; grid-template-columns:1fr 1.1fr 1fr; gap:18px; align-items:center}
+.media-box{background:var(--primary); border:2px solid var(--border); border-radius:10px; padding:18px; text-align:center; color:#999999; min-height:210px; display:flex; align-items:center; justify-content:center; font-weight:600}
+.explainer-text{background:#f8fbff; border-left:4px solid var(--accent); border-radius:10px; padding:22px; text-align:center; font-size:17px; line-height:1.7; color:var(--text); min-height:210px; display:flex; align-items:center; justify-content:center}
 
-.teams{background:#ffffff; border:none; border-radius:12px; padding:30px; box-shadow:0 4px 12px rgba(0,0,0,0.08); display:flex; flex-direction:column; gap:20px}
-.teams-header h2{margin:0; font-size:28px; letter-spacing:1px; color:var(--accent)}
-.teams-header p{margin:8px 0 0; color:var(--muted); font-size:16px}
-.team-list{display:flex; flex-direction:column; gap:16px}
-.team-card{display:grid; grid-template-columns:120px 1fr; gap:20px; background:#f9f9f9; border:1px solid var(--border); border-radius:12px; padding:20px; transition:all 0.2s ease}
-.team-card:hover{background:#f5f5f5; box-shadow:0 2px 8px rgba(0,0,0,0.05)}
-.team-avatar{width:120px; height:120px; border-radius:999px; background:linear-gradient(135deg, var(--accent) 0%, rgba(43,111,214,0.5) 100%); border:2px solid var(--accent); flex-shrink:0}
-.team-text{display:flex; align-items:center; color:var(--text); font-weight:500}
+.teams{background:#ffffff; border-top:5px solid var(--accent); border-radius:8px; padding:28px; box-shadow:0 2px 8px rgba(0,0,0,0.1); display:flex; flex-direction:column; gap:18px}
+.teams-header h2{margin:0; font-size:26px; letter-spacing:0.5px; color:var(--accent)}
+.teams-header p{margin:6px 0 0; color:var(--muted); font-size:15px}
+.team-list{display:flex; flex-direction:column; gap:14px}
+.team-card{display:grid; grid-template-columns:110px 1fr; gap:18px; background:#f8fbff; border-left:4px solid var(--accent); border-radius:10px; padding:18px; transition:all 0.2s ease}
+.team-card:hover{background:#f0f7ff; box-shadow:0 3px 10px rgba(43,111,214,0.15)}
+.team-avatar{width:110px; height:110px; border-radius:999px; background:var(--primary); border:3px solid var(--accent); flex-shrink:0}
+.team-text{display:flex; align-items:center; color:var(--text); font-weight:500; font-size:15px}
 
-.site-footer{padding:20px; text-align:center; color:var(--muted); font-size:14px; background:#ffffff; border-top:1px solid var(--border)}
+.site-footer{padding:20px; text-align:center; color:var(--muted); font-size:13px; background:var(--primary); color:#ffffff; border-top:2px solid var(--border)}
 
-.page-wrap{max-width:900px; margin:32px auto; padding:0 20px 32px; color:var(--text)}
-.page-wrap h2{color:var(--accent); font-size:28px; margin-bottom:12px}
-.edit-area{min-height:380px; border:2px dashed var(--border); border-radius:12px; padding:24px; background:#f9f9f9; color:var(--text)}
-.hint{color:var(--muted); font-size:14px; margin-bottom:16px}
+.page-wrap{max-width:900px; margin:28px auto; padding:0 20px 32px; color:var(--text)}
+.page-wrap h2{color:var(--accent); font-size:26px; margin-bottom:8px; text-transform:uppercase; letter-spacing:1px}
+.edit-area{min-height:360px; border:2px solid var(--border); border-radius:10px; padding:22px; background:var(--primary); color:#ffffff; font-size:15px; line-height:1.6}
+.hint{color:var(--muted); font-size:13px; margin-bottom:14px}
 
 @media (max-width:960px){
   .media-grid{grid-template-columns:1fr;}
@@ -59,11 +58,12 @@ a{color:inherit; text-decoration:none}
 }
 
 @media (max-width:560px){
-  .logo{height:82px}
-  .nav-item{padding:10px 14px; font-size:14px}
+  .logo{height:72px}
+  .nav-item{padding:8px 12px; font-size:12px}
   .home-main{padding:16px}
-  .hero{padding:38px 16px}
-  .explainer, .teams{padding:22px 16px}
-  .hero-sub{font-size:24px}
-  .teams-header h2{font-size:22px}
+  .hero{padding:32px 16px}
+  .explainer, .teams{padding:18px 16px}
+  .hero-sub{font-size:22px}
+  .teams-header h2{font-size:20px}
+  .media-box, .explainer-text{min-height:140px}
 }
