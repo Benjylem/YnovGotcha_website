@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Carte - GOTCHA</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="logo-wrap" href="../index.html">
+        <img src="../svg/Logo.svg" alt="GOTCHA" class="logo" onerror="this.onerror=null;this.src='../img/logo-placeholder.svg'">
+      </a>
+      <nav class="nav-row nav-left">
+        <a href="video.html" class="nav-item">Vidéo</a>
+        <a href="actualite.html" class="nav-item">Actualité</a>
+        <a href="histoire.html" class="nav-item">Histoire</a>
+        <a href="carte.html" class="nav-item" style="background: var(--accent);">Carte</a>
+        <a href="contact.html" class="nav-item">Contact</a>
+      </nav>
+    </header>
+
+    <main class="page-wrap">
+      <div class="map-container">
+        <h2 class="map-title">Nos Localisations</h2>
+        <p class="map-subtitle">Découvrez où vous pouvez nous rencontrer et suivre les Ydays</p>
+        
+        <div id="map"></div>
+        
+        <div class="locations-info">
+          <div class="location-card">
+            <div class="location-icon">🏫</div>
+            <h3>École Ynov</h3>
+            <p><strong>Coordonnées:</strong> 47.2055°N, 1.5395°O</p>
+            <p><strong>Horaires:</strong> Jours réguliers</p>
+            <p><strong>Info:</strong> Siège principal où se déroulent la plupart de nos activités et des Ydays</p>
+          </div>
+          
+          <div class="location-card">
+            <div class="location-icon">💬</div>
+            <h3>Lieu de Réunion Ydays</h3>
+            <p><strong>Coordonnées:</strong> 47.2061°N, 1.5603°O</p>
+            <p><strong>Horaires:</strong> Régulier</p>
+            <p><strong>Info:</strong> Point de regroupement pour discuter et organiser les Ydays avec l'équipe</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; 2026 GOTCHA - Le média étudiant des Ydays. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+      // Initialiser la carte
+      const schoolLat = 47.20552759978113;
+      const schoolLng = -1.5395158155496025;
+      const meetingLat = 47.20606017456839;
+      const meetingLng = -1.5603464644917546;
+      
+      const map = L.map('map').setView([schoolLat, schoolLng], 15);
+      
+      // Ajouter le fond de carte (OpenStreetMap)
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors',
+        maxZoom: 19,
+        tileSize: 256
+      }).addTo(map);
+      
+      // Marqueur - École Ynov (principal)
+      const primaryMarker = L.circleMarker([schoolLat, schoolLng], {
+        radius: 15,
+        fillColor: '#2b6fd6',
+        color: '#ffffff',
+        weight: 3,
+        opacity: 1,
+        fillOpacity: 0.8
+      }).addTo(map);
+      
+      primaryMarker.bindPopup(
+        '<div style="padding: 8px; font-weight: 600;">🏫 École Ynov<br>' +
+        '39 boulevard Louis Marin<br>' +
+        'Nantes (44)<br>' +
+        '<span style="font-size: 12px; color: #8899aa;">Siège principal</span></div>'
+      );
+      
+      // Marqueur - Lieu de réunion Ydays
+      const secondaryMarker = L.circleMarker([meetingLat, meetingLng], {
+        radius: 12,
+        fillColor: '#1e5bb8',
+        color: '#ffffff',
+        weight: 2,
+        opacity: 1,
+        fillOpacity: 0.7
+      }).addTo(map);
+      
+      secondaryMarker.bindPopup(
+        '<div style="padding: 8px; font-weight: 600;">📍 Lieu de Réunion Ydays<br>' +
+        'Point de Regroupement<br>' +
+        'Nantes (44)<br>' +
+        '<span style="font-size: 12px; color: #8899aa;">Discussions & Organisation</span></div>'
+      );
+      
+      // Tracer une ligne entre les deux points
+      const line = L.polyline([
+        [schoolLat, schoolLng],
+        [meetingLat, meetingLng]
+      ], {
+        color: '#2b6fd6',
+        weight: 2,
+        opacity: 0.5,
+        dashArray: '5, 5'
+      }).addTo(map);
+      
+      // Créer un groupe de couches pour zoom automatique
+      const group = new L.featureGroup([primaryMarker, secondaryMarker]);
+      map.fitBounds(group.getBounds(), {padding: [50, 50]});
+    </script>
+  </body>
+</html>
