@@ -5,6 +5,105 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Vidéo</title>
     <link rel="stylesheet" href="../css/styles.css">
+    <style>
+      .video-page {
+        max-width: 1300px;
+        width: 100%;
+      }
+
+      .video-page .video-pyramid {
+        display: flex !important;
+        flex-wrap: wrap;
+        gap: 24px;
+        align-items: flex-start;
+        width: 100%;
+      }
+
+      .video-page .video-slot {
+        background: var(--card-bg);
+        border: 2px solid var(--border);
+        border-radius: 16px;
+        padding: 20px;
+        box-shadow: 0 8px 28px rgba(43,111,214,0.2);
+        width: 100%;
+      }
+
+      .video-page .video-slot h3 {
+        margin: 0;
+        color: var(--primary);
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        font-size: 18px;
+      }
+
+      .video-page .video-carousel-slot {
+        margin-top: 16px;
+      }
+
+      .video-page .video-slot-top {
+        flex: 0 0 100%;
+        max-width: 920px;
+        margin: 0 auto;
+      }
+
+      .video-page .video-slot-left,
+      .video-page .video-slot-right {
+        flex: 1 1 calc(50% - 12px);
+        min-width: 320px;
+      }
+
+      .video-page .video-slot .video-container {
+        aspect-ratio: 4 / 5;
+        min-height: 0;
+        position: relative;
+      }
+
+      .video-page .video-slot .video-container iframe {
+        width: 100%;
+        height: 100%;
+      }
+
+      .video-page .video-slot .video-container.is-horizontal {
+        aspect-ratio: 16 / 9;
+      }
+
+      .video-page .video-controls {
+        margin-top: 12px;
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+      }
+
+      .video-page .video-control-btn {
+        width: 34px;
+        height: 34px;
+        border-radius: 999px;
+        border: 2px solid var(--primary);
+        background: rgba(43,111,214,0.12);
+        color: var(--text);
+        font-size: 16px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.25s ease;
+      }
+
+      .video-page .video-control-btn:hover {
+        background: var(--primary);
+        transform: translateY(-2px);
+      }
+
+      @media (max-width: 760px) {
+        .video-page .video-slot-top,
+        .video-page .video-slot-left,
+        .video-page .video-slot-right {
+          flex-basis: 100%;
+          max-width: 100%;
+          min-width: 0;
+        }
+      }
+    </style>
   </head>
   <body>
     <header class="site-header">
@@ -20,14 +119,81 @@
       </nav>
     </header>
 
-    <main class="page-wrap">
-      <h2>Vidéo</h2>
-      <p class="hint"></p>
-      <div class="edit-area">
-        <p>Vids à mettre ici</p>
-      </div>
+    <main class="page-wrap video-page">
+      <h2>Vidéos</h2>
+      <!-- <p class="hint">Une sélection répartie en pyramide : explicatives en haut, "On est des bâtards" en bas à gauche, micro-trottoir en bas à droite.</p> -->
+
+      <section class="video-pyramid" aria-label="Vidéos GOTCHA par pôle">
+        <article class="video-slot video-slot-top">
+          <h3>Focus</h3>
+          <div class="video-carousel-slot">
+            <div class="video-container is-horizontal">
+              <iframe src="https://www.instagram.com/p/DWBN5vzDyEj/embed" title="Vidéos explicatives GOTCHA" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+            </div>
+            <div class="video-controls">
+              <button class="video-control-btn orientation-btn" type="button" aria-label="Basculer vertical ou horizontal" title="Vertical / Horizontal">↔</button>
+              <button class="video-control-btn fullscreen-btn" type="button" aria-label="Mettre en grand" title="Plein écran">⛶</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="video-slot video-slot-left">
+          <h3>Vidéos ON EST DES BÂTARDS</h3>
+          <div class="video-carousel-slot">
+            <div class="video-container is-horizontal">
+              <iframe src="https://www.instagram.com/p/DWBN5vzDyEj/embed" title="Vidéos ON EST DES BÂTARDS" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+            </div>
+            <div class="video-controls">
+              <button class="video-control-btn orientation-btn" type="button" aria-label="Basculer vertical ou horizontal" title="Vertical / Horizontal">↔</button>
+              <button class="video-control-btn fullscreen-btn" type="button" aria-label="Mettre en grand" title="Plein écran">⛶</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="video-slot video-slot-right">
+          <h3>Vidéos micro-trottoir</h3>
+          <div class="video-carousel-slot">
+            <div class="video-container is-horizontal">
+              <iframe src="https://www.instagram.com/p/DWBN5vzDyEj/embed" title="Vidéos micro-trottoir GOTCHA" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+            </div>
+            <div class="video-controls">
+              <button class="video-control-btn orientation-btn" type="button" aria-label="Basculer vertical ou horizontal" title="Vertical / Horizontal">↔</button>
+              <button class="video-control-btn fullscreen-btn" type="button" aria-label="Mettre en grand" title="Plein écran">⛶</button>
+            </div>
+          </div>
+        </article>
+      </section>
     </main>
 
     <footer class="site-footer">© GOTCHA</footer>
+
+    <script>
+      document.querySelectorAll(".video-slot").forEach((slot) => {
+        const container = slot.querySelector(".video-container");
+        const orientationBtn = slot.querySelector(".orientation-btn");
+        const fullscreenBtn = slot.querySelector(".fullscreen-btn");
+
+        if (orientationBtn && container) {
+          orientationBtn.addEventListener("click", () => {
+            container.classList.toggle("is-horizontal");
+            orientationBtn.textContent = container.classList.contains("is-horizontal") ? "↔" : "↕";
+          });
+        }
+
+        if (fullscreenBtn && container) {
+          fullscreenBtn.addEventListener("click", async () => {
+            try {
+              if (!document.fullscreenElement) {
+                await container.requestFullscreen();
+              } else {
+                await document.exitFullscreen();
+              }
+            } catch (error) {
+              console.error("Plein écran indisponible:", error);
+            }
+          });
+        }
+      });
+    </script>
   </body>
 </html>
