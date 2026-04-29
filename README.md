@@ -6,12 +6,14 @@ Site officiel du groupe GOTCHA avec navigation fluide et présentation des équi
 
 - `index.html` — page d'accueil avec hero, explications et équipes
 - `pages/video.html` — section Vidéo
-- `pages/actualite.html` — section Actualité
 - `pages/histoire.html` — section Histoire
-- `pages/contact.html` — section Contact et IA
+- `pages/carte.html` — section Carte et localisations
+- `pages/contact.html` — section Contact et IA Chatbot
+- `pages/pole-*.html` — pages détaillées des 6 pôles
 - `css/styles.css` — styles principaux (thème dark moderne)
 - `img/` — images et logos
 - `svg/` — fichiers vectoriels (Logo.svg)
+- `js/chatbot.js` — chatbot IA local (10 réponses pré-configurées)
 
 ## Démarrer avec GitHub
 
@@ -54,6 +56,24 @@ Dans `index.html`, remplacez les `<div class="media-box">` par des iframes YouTu
   frameborder="0" allowfullscreen></iframe>
 ```
 
+### Configurer le Twitch Live
+
+La page d'accueil affiche automatiquement:
+- 🔴 **Quand en direct**: La section Live Twitch (canal `@gotcha_media`)
+- 🚫 **Quand offline**: Rien (section masquée)
+
+Pour changer la chaîne Twitch, voir [GUIDE_TWITCH_LIVE.md](GUIDE_TWITCH_LIVE.md)
+
+### Ajouter/modifier les vidéos
+
+Les vidéos sont faciles à gérer:
+- **Page principale:** Jusqu'à 100+ vidéos en carousel (2 carousels indépendants)
+- **Page Vidéo:** Ajouter différentes vidéos par bloc
+
+**Guides:**
+- 📖 [GUIDE_VIDEOS.md](GUIDE_VIDEOS.md) - Guide détaillé complet
+- 📚 [GUIDE_VIDEOS_PRATIQUE.md](GUIDE_VIDEOS_PRATIQUE.md) - Exemples concrets pas à pas
+
 ### Changer les couleurs du thème
 
 Ouvrez `css/styles.css` et modifiez les variables CSS dans `:root`:
@@ -71,10 +91,22 @@ Ouvrez `css/styles.css` et modifiez les variables CSS dans `:root`:
 ## Navigation du site
 
 - **Logo GOTCHA**: Cliquable de n'importe quelle page → retour à l'accueil
-- **Barre de navigation**: Vidéo, Actualité, Histoire, Contact (visible sur toutes les pages)
+- **Barre de navigation**: Vidéo, Histoire, Carte, Contact (visible sur toutes les pages)
 - **Scrollable**: Le contenu défile naturellement avec la molette/trackpad
 
-## Déployer en ligne
+## Contact & Réseaux sociaux
+
+### Page Contact simplifiée
+La page `pages/contact.html` affiche désormais:
+- **Chatbot IA** - Assistant local pour répondre aux questions
+- **Linktree** - Tous les liens centralisés: [linktr.ee/mediagotchaproductions](https://linktr.ee/mediagotchaproductions)
+
+### Réseaux disponibles
+- 📱 Instagram: @gotcha_media
+- 🎵 TikTok: @gotcha_media
+- 📺 YouTube: Chaîne GOTCHA
+- 🔴 Twitch: @gotcha_media (livestreams)
+- 🔗 Linktree: linktr.ee/mediagotchaproductions
 
 ### Avec GitHub Pages
 
@@ -92,3 +124,5 @@ Transférez les fichiers via SFTP ou Git sur votre serveur.
 - Responsive sur mobile, tablette et desktop
 - Navigation fluide avec logo cliquable depuis toutes les pages
 - Thème dark moderne avec accents cyan
+- **Intégration Twitch Live** - Détection automatique du statut de la chaîne
+- **Chatbot IA local** - 12 réponses pré-configurées, aucune API externe payante

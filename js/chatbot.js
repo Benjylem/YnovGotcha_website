@@ -12,8 +12,8 @@ const knowledgeBase = {
     keywords: ["formats", "vidéo", "contenu", "production"]
   },
   "comment contacter gotcha": {
-    answer: "Tu peux nous contacter via:\n📧 Email: remplace@par.ton.email\n📱 Instagram: @gotcha\n💬 TikTok: @gotcha\n🌐 Site web: gotcha2026.netlify.app\nTu peux aussi remplir un formulaire de contact sur notre site!",
-    keywords: ["contact", "email", "instagram", "communiquer", "joindre"]
+    answer: "Tu peux nous contacter via:\n📧 Linktree: https://linktr.ee/mediagotchaproductions\n📱 Instagram: @gotcha_media\n🎵 TikTok: @gotcha_media\n🌐 Twitch: gotcha_media (pour les livestreams)\n🌐 Site web: gotcha2026.netlify.app\nTu trouveras tous nos liens et infos sur notre Linktree!",
+    keywords: ["contact", "email", "instagram", "communiquer", "joindre", "linktree"]
   },
   "qu'est-ce que les ydays": {
     answer: "Les Ydays sont des jours de projets à l'école Ynov. C'est un moment où les étudiants travaillent sur des projets réels, innovants et pluridisciplinaires. GOTCHA est là pour centraliser les infos et valoriser ces projets auprès de tous les étudiants.",
@@ -36,9 +36,13 @@ const knowledgeBase = {
     keywords: ["mission", "objectif", "but", "raison"]
   },
   "quels réseaux utilisez-vous": {
-    answer: "Nos réseaux sociaux:\n📲 Instagram - Contenu quotidien\n🎵 TikTok - Vidéos courtes et virales\n📺 YouTube - Vidéos complètes\n🌐 Site GOTCHA - Hub centralisé\n📡 Livestreams - Événements en direct",
-    keywords: ["réseau", "social", "instagram", "tiktok", "youtube"]
-  }
+    answer: "Nos réseaux sociaux:\n📲 Instagram - Contenu quotidien (@gotcha_media)\n🎵 TikTok - Vidéos courtes et virales (@gotcha_media)\n📺 YouTube - Vidéos complètes et playlists\n🌐 Site GOTCHA - Hub centralisé\n🔴 Twitch - Livestreams en direct (@gotcha_media)\n🔗 Linktree - Tous nos liens: linktr.ee/mediagotchaproductions",
+    keywords: ["réseau", "social", "instagram", "tiktok", "youtube", "twitch", "linktree"]
+  },
+  "vous faites des livestreams": {
+    answer: "Oui! Le Pôle 'On Est Des Bâtards' s'occupe des livestreams! 🔴\n\n📡 Retrouvez nos livestreams en direct sur:\n🔗 Twitch: @gotcha_media\n🎯 Nous streamons régulièrement les événements Ydays en direct\n\n💡 Consultez notre Linktree pour tous les liens: linktr.ee/mediagotchaproductions",
+    keywords: ["livestream", "direct", "stream", "twitch", "live", "en direct"]
+  },
 };
 
 function findBestMatch(userMessage) {
