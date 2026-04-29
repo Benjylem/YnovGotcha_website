@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>GOTCHA</title>
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+      .live-section { display: none; }
+    </style>
   </head>
   <body>
     <header class="site-header">
@@ -20,45 +23,43 @@
     </header>
 
     <main class="home-main">
-      <section class="live-section" style="display:none;">
-        <div class="live-header">
-          <h2>🔴 EN DIRECT TWITCH</h2>
-          <p id="liveStatus" class="live-status">Vérification du statut...</p>
-        </div>
-        <div class="live-container">
-          <div id="twitchLiveContainer" class="live-embed" style="display:none;">
-            <iframe src="https://player.twitch.tv/?channel=gotcha_media&parent=gotcha2026.netlify.app&parent=localhost" 
-              frameborder="0" allowfullscreen="true" scrolling="no" height="400"></iframe>
-          </div>
-          <div id="youtubeFallback" class="live-embed">
-            <iframe id="fallbackVideoFrame" width="100%" height="400" src="https://www.youtube.com/embed/4dVbEoPTieg" 
-              title="Vidéo GOTCHA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-          </div>
-        </div>
-      </section>
+      <!-- Section live supprimée, le player Twitch est déplacé dans la section vidéo ci-dessous -->
 
       <section class="explainer">
-        <div class="media-grid">
-          <div class="video-carousel">
-            <button class="carousel-btn prev" onclick="changeVideo(-1)">‹</button>
-            <div class="video-container" id="videoContainer">
-              <iframe id="videoFrame" width="100%" height="240" src="https://www.youtube.com/embed/UjxiQlM7Ce0" title="Vidéo GOTCHA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
-            <button class="carousel-btn next" onclick="changeVideo(1)">›</button>
-            <div class="video-counter" id="videoCounter">1 / 2</div>
+        <div class="media-grid" style="display: flex; flex-direction: column; align-items: center;">
+          <div class="video-twitch" style="width:100%; max-width:1100px; margin-bottom: 2.5rem;">
+            <h2 style="text-align:center; font-size:2rem; margin-bottom:1rem;">🔴 EN DIRECT TWITCH</h2>
+            <iframe
+              src="https://player.twitch.tv/?channel=gotcha_media&parent=gotcha2026.netlify.app&parent=localhost"
+              frameborder="0"
+              allowfullscreen="true"
+              scrolling="no"
+              height="540"
+              width="100%"
+              style="display:block; margin:0 auto; border-radius:12px; box-shadow:0 4px 24px #0002; min-height:340px; background:#000;">
+            </iframe>
           </div>
-          <div class="explainer-text">On est GOTCHA, le média étudiant sur les Ydays. 
-          Ici, on explique les projets et on rend tout ça fun et simple à comprendre. 
-          On fait des vidéos, des micro-trottoirs, des formats humour et des livestreams… Bref, on centralise tout pour que t'aies toutes les infos sur les Ydays au même endroit. 
-          On est vous, pour là.</div>
-          <div class="video-carousel">
-            <button class="carousel-btn prev" onclick="changeVideo(-1)">‹</button>
-            <div class="video-container" id="videoContainer2">
-              <iframe id="videoFrame2" width="100%" height="240" src="https://www.youtube.com/embed/7HsvMJKsJ3A" title="Vidéo GOTCHA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <div style="display: flex; flex-wrap: wrap; width:100%; max-width:1100px; gap:2rem; justify-content: center; align-items: stretch;">
+            <div class="video-carousel" style="flex:1 1 320px; min-width:280px; max-width:420px; display:flex; flex-direction:column;">
+              <button class="carousel-btn prev" onclick="changeVideo(-1)">‹</button>
+              <div class="video-container" id="videoContainer">
+                <iframe id="videoFrame" width="100%" height="240" src="https://www.youtube.com/embed/UjxiQlM7Ce0" title="Vidéo GOTCHA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              </div>
+              <button class="carousel-btn next" onclick="changeVideo(1)">›</button>
+              <div class="video-counter" id="videoCounter">1 / 2</div>
             </div>
-            <button class="carousel-btn next" onclick="changeVideo(1)">›</button>
-            <div class="video-counter" id="videoCounter2">1 / 2</div>
+            <div class="explainer-text" style="flex:1 1 320px; min-width:280px; max-width:420px; align-self: center; display:flex; align-items:center; justify-content:center; text-align:center;">On est GOTCHA, le média étudiant sur les Ydays. 
+            Ici, on explique les projets et on rend tout ça fun et simple à comprendre. 
+            On fait des vidéos, des micro-trottoirs, des formats humour et des livestreams… Bref, on centralise tout pour que t'aies toutes les infos sur les Ydays au même endroit. 
+            On est vous, pour là.</div>
+            <div class="video-carousel" style="flex:1 1 320px; min-width:280px; max-width:420px; display:flex; flex-direction:column;">
+              <button class="carousel-btn prev" onclick="changeVideo(-1, 2)">‹</button>
+              <div class="video-container" id="videoContainer2">
+                <iframe id="videoFrame2" width="100%" height="240" src="https://www.youtube.com/embed/7HsvMJKsJ3A" title="Vidéo GOTCHA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              </div>
+              <button class="carousel-btn next" onclick="changeVideo(1, 2)">›</button>
+              <div class="video-counter" id="videoCounter2">1 / 2</div>
+            </div>
           </div>
         </div>
       </section>
@@ -128,52 +129,7 @@
       let currentVideoIndex1 = 0;
       let currentVideoIndex2 = 0;
 
-      // Détection du live Twitch
-      async function checkTwitchLiveStatus() {
-        try {
-          const liveSection = document.querySelector('.live-section');
-          const statusEl = document.getElementById('liveStatus');
-          const twitchContainer = document.getElementById('twitchLiveContainer');
-          const youtubeContainer = document.getElementById('youtubeFallback');
-          
-          // Essayer de récupérer le statut via une API gratuite
-          const response = await fetch('https://api.twitch.tv/kraken/streams/gotcha_media', {
-            headers: {
-              'Client-ID': 'kimne78kx3ncx6brgo4mv6wqc5d1p5'
-            }
-          }).catch(() => null);
-          
-          if (response && response.ok) {
-            const data = await response.json();
-            const isLive = data.stream !== null;
-            
-            if (isLive) {
-              // Live Twitch actif - AFFICHER la section complète
-              liveSection.style.display = 'block';
-              twitchContainer.style.display = 'block';
-              youtubeContainer.style.display = 'none';
-              statusEl.textContent = '🔴 EN DIRECT MAINTENANT!';
-              statusEl.style.color = '#ff4444';
-            } else {
-              // Offline - MASQUER complètement la section
-              liveSection.style.display = 'none';
-            }
-          } else {
-            // API non disponible - MASQUER la section (pas de fallback)
-            liveSection.style.display = 'none';
-          }
-        } catch (error) {
-          console.log('Erreur lors de la vérification Twitch:', error);
-          // Masquer la section en cas d'erreur
-          document.querySelector('.live-section').style.display = 'none';
-        }
-      }
-
-      // Vérifier le statut au chargement
-      document.addEventListener('DOMContentLoaded', checkTwitchLiveStatus);
-      
-      // Vérifier toutes les 60 secondes
-      setInterval(checkTwitchLiveStatus, 60000);
+      // ...existing code...
 
       function changeVideo(direction, containerNum = 1) {
         const containerNum2 = containerNum === 1 ? 2 : 1;
