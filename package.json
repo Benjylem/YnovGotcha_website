@@ -1,0 +1,8 @@
+{
+  "name": "gotcha-website",
+  "version": "1.0.0",
+  "description": "Site officiel du média étudiant GOTCHA",
+  "scripts": {
+    "start": "npx serve . -p 3000"
+  }
+}
