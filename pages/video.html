@@ -94,6 +94,13 @@
         transform: translateY(-2px);
       }
 
+      .vid-counter {
+        font-size: 13px;
+        font-weight: normal;
+        color: var(--text-muted, #aaa);
+        margin-left: 8px;
+      }
+
       @media (max-width: 760px) {
         .video-page .video-slot-top,
         .video-page .video-slot-left,
@@ -124,12 +131,14 @@
 
       <section class="video-pyramid" aria-label="Vidéos GOTCHA par pôle">
         <article class="video-slot video-slot-top">
-          <h3>Focus</h3>
+          <h3>Focus <span class="vid-counter" id="focus-counter">1 / 2</span></h3>
           <div class="video-carousel-slot">
             <div class="video-container is-horizontal">
-              <iframe src="https://www.instagram.com/p/DWBN5vzDyEj/embed" title="Vidéos explicatives GOTCHA" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+              <iframe id="focus-frame" src="https://www.instagram.com/p/DWBN5vzDyEj/embed" title="Vidéos Focus GOTCHA" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
             </div>
             <div class="video-controls">
+              <button class="video-control-btn" type="button" onclick="changeSlot('focus', -1)" title="Précédent">‹</button>
+              <button class="video-control-btn" type="button" onclick="changeSlot('focus', 1)" title="Suivant">›</button>
               <button class="video-control-btn orientation-btn" type="button" aria-label="Basculer vertical ou horizontal" title="Vertical / Horizontal">↔</button>
               <button class="video-control-btn fullscreen-btn" type="button" aria-label="Mettre en grand" title="Plein écran">⛶</button>
             </div>
@@ -150,12 +159,14 @@
         </article>
 
         <article class="video-slot video-slot-right">
-          <h3>Vidéos micro-trottoir</h3>
+          <h3>Vidéos micro-trottoir <span class="vid-counter" id="trottoir-counter">1 / 2</span></h3>
           <div class="video-carousel-slot">
             <div class="video-container is-horizontal">
-              <iframe src="https://www.instagram.com/p/DXRGIYIjRtd/embed" title="Vidéos micro-trottoir GOTCHA" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+              <iframe id="trottoir-frame" src="https://www.instagram.com/p/DXRGIYIjRtd/embed" title="Vidéos micro-trottoir GOTCHA" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
             </div>
             <div class="video-controls">
+              <button class="video-control-btn" type="button" onclick="changeSlot('trottoir', -1)" title="Précédent">‹</button>
+              <button class="video-control-btn" type="button" onclick="changeSlot('trottoir', 1)" title="Suivant">›</button>
               <button class="video-control-btn orientation-btn" type="button" aria-label="Basculer vertical ou horizontal" title="Vertical / Horizontal">↔</button>
               <button class="video-control-btn fullscreen-btn" type="button" aria-label="Mettre en grand" title="Plein écran">⛶</button>
             </div>
@@ -167,6 +178,26 @@
     <footer class="site-footer">© GOTCHA</footer>
 
     <script>
+      // Carousel data — add 2nd video URLs here
+      const slotVideos = {
+        focus: [
+          "https://www.instagram.com/p/DWBN5vzDyEj/embed",
+          "https://www.instagram.com/p/PLACEHOLDER_FOCUS_2/embed" // TODO: remplace par la vraie URL
+        ],
+        trottoir: [
+          "https://www.instagram.com/p/DXRGIYIjRtd/embed",
+          "https://www.instagram.com/p/PLACEHOLDER_TROTTOIR_2/embed" // TODO: remplace par la vraie URL
+        ]
+      };
+      const slotIndex = { focus: 0, trottoir: 0 };
+
+      function changeSlot(name, dir) {
+        const list = slotVideos[name];
+        slotIndex[name] = (slotIndex[name] + dir + list.length) % list.length;
+        document.getElementById(name + "-frame").src = list[slotIndex[name]];
+        document.getElementById(name + "-counter").textContent = (slotIndex[name] + 1) + " / " + list.length;
+      }
+
       document.querySelectorAll(".video-slot").forEach((slot) => {
         const container = slot.querySelector(".video-container");
         const orientationBtn = slot.querySelector(".orientation-btn");

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <style>
       .live-section { display: none; }
+      #twitch-live-section { display: none; }
     </style>
   </head>
   <body>
@@ -23,21 +24,17 @@
     </header>
 
     <main class="home-main">
-      <!-- Section live supprimée, le player Twitch est déplacé dans la section vidéo ci-dessous -->
+      <!-- Section Twitch : s'affiche uniquement quand le live est actif -->
+      <div id="twitch-live-section" style="width:100%; max-width:1100px; margin: 2rem auto 0; padding: 0 1rem; box-sizing:border-box;">
+        <div style="border: 2px solid #6441a5; border-radius: 16px; padding: 1.5rem; background: rgba(100,65,165,0.08); box-shadow: 0 4px 24px rgba(100,65,165,0.2);">
+          <h2 style="text-align:center; font-size:2rem; margin-bottom:1rem; color:#fff;">🔴 EN DIRECT TWITCH</h2>
+          <div id="twitch-embed" style="width:100%; min-height:340px; border-radius:12px; overflow:hidden;"></div>
+        </div>
+      </div>
 
       <section class="explainer">
         <div class="media-grid" style="display: flex; flex-direction: column; align-items: center;">
-          <div class="video-twitch" style="width:100%; max-width:1100px; margin-bottom: 2.5rem;">
-            <h2 style="text-align:center; font-size:2rem; margin-bottom:1rem;">🔴 EN DIRECT TWITCH</h2>
-            <iframe
-              src="https://player.twitch.tv/?channel=gotcha_media&parent=gotcha2026.netlify.app&parent=localhost"
-              frameborder="0"
-              allowfullscreen="true"
-              scrolling="no"
-              height="540"
-              width="100%"
-              style="display:block; margin:0 auto; border-radius:12px; box-shadow:0 4px 24px #0002; min-height:340px; background:#000;">
-            </iframe>
+          <div>
           </div>
           <div style="display: flex; flex-wrap: wrap; width:100%; max-width:1100px; gap:2rem; justify-content: center; align-items: stretch;">
             <div class="video-carousel" style="flex:1 1 320px; min-width:280px; max-width:420px; display:flex; flex-direction:column;">
@@ -120,6 +117,41 @@
       <p>© GOTCHA</p>
     </footer>
 
+    <script src="https://embed.twitch.tv/embed/v1.js"></script>
+    <script>
+      (function() {
+        var liveSection = document.getElementById("twitch-live-section");
+
+        var embed = new Twitch.Embed("twitch-embed", {
+          width: "100%",
+          height: 540,
+          channel: "gotcha_media",
+          layout: "video",
+          autoplay: true,
+          muted: true,
+          parent: ["gotcha2026.netlify.app", "localhost"]
+        });
+
+        embed.addEventListener(Twitch.Embed.VIDEO_READY, function() {
+          var player = embed.getPlayer();
+
+          // PLAYING se déclenche au chargement si le stream est déjà live
+          player.addEventListener(Twitch.Player.PLAYING, function() {
+            liveSection.style.display = "block";
+          });
+
+          // ONLINE se déclenche quand le stream démarre pendant la session
+          player.addEventListener(Twitch.Player.ONLINE, function() {
+            liveSection.style.display = "block";
+          });
+
+          // OFFLINE se déclenche quand le stream s'arrête (aussi au chargement si hors ligne)
+          player.addEventListener(Twitch.Player.OFFLINE, function() {
+            liveSection.style.display = "none";
+          });
+        });
+      })();
+    </script>
     <script>
       const videos = [
         "UjxiQlM7Ce0",
