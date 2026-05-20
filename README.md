@@ -1,128 +1,135 @@
-# GOTCHA Website
+# GOTCHA — Médias & Productions
 
-Site officiel du groupe GOTCHA avec navigation fluide et présentation des équipes.
+Site officiel du média étudiant GOTCHA, dédié aux Ydays de l'école Ynov.
 
-## Structure du projet
+---
 
-- `index.html` — page d'accueil avec hero, explications et équipes
-- `pages/video.html` — section Vidéo
-- `pages/histoire.html` — section Histoire
-- `pages/carte.html` — section Carte et localisations
-- `pages/contact.html` — section Contact et IA Chatbot
-- `pages/pole-*.html` — pages détaillées des 6 pôles
-- `css/styles.css` — styles principaux (thème dark moderne)
-- `img/` — images et logos
-- `svg/` — fichiers vectoriels (Logo.svg)
-- `js/chatbot.js` — chatbot IA local (10 réponses pré-configurées)
+## Hébergement
 
-## Démarrer avec GitHub
+Le site est déployé sur **Netlify** à l'adresse :
+**[gotcha2026.netlify.app](https://gotcha2026.netlify.app)**
 
-### Cloner le projet
+Chaque push sur la branche `main` déclenche un redéploiement automatique — pas besoin d'action manuelle.
+
+---
+
+## Lancer le site en local
+
+> Netlify gère la prod. Pour développer en local, utilise `npm start`.
+
+**Prérequis** : Node.js installé (n'importe quelle version récente).
 
 ```bash
-git clone https://github.com/Benjylem/YnovGotcha_website.git
+git clone git@github.com:Benjylem/YnovGotcha_website.git
 cd YnovGotcha_website
+npm start
 ```
 
-### Ouvrir le site localement
+Le site s'ouvre sur `http://localhost:3000`.
 
-1. **Avec un serveur local** (recommandé pour éviter les problèmes CORS):
-   ```bash
-   python3 -m http.server 8000
-   ```
-   Puis ouvrir `http://localhost:8000` dans le navigateur.
+Pourquoi un serveur local plutôt qu'ouvrir `index.html` directement ? Les iframes Instagram/Twitch et les ressources CSS/JS entre dossiers ont des restrictions CORS qui cassent le rendu si le fichier est ouvert via `file://`.
 
-2. **Direct dans le navigateur** (simple mais peut avoir des limitations):
-   - Double-cliquez sur `index.html` ou faites clic droit → "Ouvrir avec le navigateur"
+---
 
-## Personnaliser le site
+## Technologies utilisées
 
-### Changer le logo
+| Technologie | Rôle |
+|---|---|
+| HTML5 | Structure de toutes les pages |
+| CSS3 (variables, flexbox, grid) | Thème dark, responsive |
+| JavaScript vanilla | Carousels, chatbot, détection live Twitch |
+| Twitch Embed SDK | Player live avec détection ON/OFF automatique |
+| Instagram oEmbed | Intégration des vidéos Focus et Trottoir |
+| YouTube iFrame | Vidéos sur la page d'accueil |
+| Netlify | Hébergement statique + déploiement continu depuis GitHub |
 
-1. Remplacez `svg/Logo.svg` par votre logo (format SVG de préférence)
-2. Si vous utilisez PNG/JPG, modifiez les balises `<img>` dans les fichiers HTML
+Pas de framework, pas de bundler, pas de backend — site 100% statique.
 
-### Modifier le texte des sections
+---
 
-- **Explications centrales**: Éditez la classe `.explainer-text` dans `index.html`
-- **Texte des équipes**: Remplacez `Team` dans la section `.team-text` (classe `.team-card`)
-- **Chaque page**: Ouvrez `pages/video.html`, `pages/actualite.html`, etc., et modifiez la zone `<div class="edit-area">`
+## Architecture
 
-### Ajouter des vidéos
-
-Dans `index.html`, remplacez les `<div class="media-box">` par des iframes YouTube ou Vimeo:
-```html
-<iframe width="100%" height="220" src="https://www.youtube.com/embed/VIDEO_ID" 
-  frameborder="0" allowfullscreen></iframe>
+```
+YnovGotcha_website/
+├── index.html                  # Page d'accueil (live Twitch + carousels YouTube + teams)
+├── css/
+│   └── styles.css              # Tous les styles (thème dark, variables CSS, responsive)
+├── js/
+│   └── chatbot.js              # Chatbot local (réponses pré-configurées, aucune API externe)
+├── pages/
+│   ├── video.html              # Carousels vidéo (Focus ×3, Trottoir ×2, Bâtards)
+│   ├── histoire.html           # Histoire de GOTCHA
+│   ├── carte.html              # Carte des localisations
+│   ├── contact.html            # Page contact + chatbot
+│   ├── pole-cheffes.html       # Page pôle Cheffes
+│   ├── pole-informatique.html  # Page pôle Informatique
+│   ├── pole-explicatif.html    # Page pôle Explicatif / Focus
+│   ├── pole-micro-trottoir.html# Page pôle Micro-trottoir
+│   ├── pole-batards.html       # Page pôle ON EST DES BÂTARDS
+│   └── pole-Market-Com.html    # Page pôle Market-Com
+├── img/                        # Photos des membres et visuels des pôles
+├── svg/                        # Logo et icônes vectoriels
+└── package.json                # Script npm start pour serveur local
 ```
 
-### Configurer le Twitch Live
+---
 
-La page d'accueil affiche automatiquement:
-- 🔴 **Quand en direct**: La section Live Twitch (canal `@gotcha_media`)
-- 🚫 **Quand offline**: Rien (section masquée)
+## Organisation du code
 
-Pour changer la chaîne Twitch, voir [GUIDE_TWITCH_LIVE.md](GUIDE_TWITCH_LIVE.md)
+### Ce qui fonctionne bien
 
-### Ajouter/modifier les vidéos
+- **Détection live Twitch** : la section s'affiche/se cache automatiquement selon le statut de la chaîne `gotcha_media`. Utilise le Twitch Embed SDK avec les événements `PLAYING`, `ONLINE` et `OFFLINE`.
+- **Carousels vidéo** : Focus (3 vidéos), Trottoir (2 vidéos), indépendants avec compteur et navigation ‹ ›. Les URLs sont regroupées dans un objet JS facile à modifier.
+- **Chatbot local** : aucune dépendance externe, 0€ de coût, fonctionne sans connexion API.
+- **Thème CSS** : tout repose sur des variables CSS dans `:root` — changer une couleur ou une police se fait en une ligne.
+- **Déploiement continu** : push → Netlify redéploie en ~30 secondes.
+- **Responsive** : le site s'adapte mobile/tablette/desktop via flexbox et media queries.
 
-Les vidéos sont faciles à gérer:
-- **Page principale:** Jusqu'à 100+ vidéos en carousel (2 carousels indépendants)
-- **Page Vidéo:** Ajouter différentes vidéos par bloc
+### Ce qui pourrait être amélioré
 
-**Guides:**
-- 📖 [GUIDE_VIDEOS.md](GUIDE_VIDEOS.md) - Guide détaillé complet
-- 📚 [GUIDE_VIDEOS_PRATIQUE.md](GUIDE_VIDEOS_PRATIQUE.md) - Exemples concrets pas à pas
+- **Ajouter des vidéos** : les URLs des vidéos sont en dur dans le HTML/JS. Un petit fichier `data/videos.json` centralisé éviterait de fouiller dans le code à chaque nouvelle vidéo.
+- **Pages pôles** : certaines pages (`rubrique1.html`, `presentation.html`, `team.html`) sont des vestiges non reliés à la navigation — à nettoyer ou supprimer.
+- **Chatbot** : les réponses sont hardcodées dans `chatbot.js`. Les centraliser dans un fichier JSON séparé faciliterait la mise à jour par quelqu'un qui ne code pas.
+- **Images** : pas d'optimisation (compression, format WebP). Des images lourdes ralentissent le chargement mobile.
+- **Pas de `netlify.toml`** : sans fichier de config Netlify, les headers de cache, les redirects et les règles de sécurité (CSP) ne sont pas configurés.
 
-### Changer les couleurs du thème
+---
 
-Ouvrez `css/styles.css` et modifiez les variables CSS dans `:root`:
-```css
-:root {
-  --primary: #0f172a;      /* Fond sombre principal */
-  --surface: #101a2e;      /* Cartes et sections */
-  --card: #16233d;         /* Éléments de contenu */
-  --accent: #7dd3fc;       /* Accent lumineux (cyan) */
-  --text: #e8ecf7;         /* Texte principal */
-  --muted: #9fb2d3;        /* Texte secondaire */
-}
+## Données sensibles
+
+Aucune clé API, token ou credential dans le code. Le site est 100% public :
+- Chatbot : réponses hardcodées, pas d'API IA externe
+- Twitch : Twitch Embed SDK public, aucun token requis
+- Instagram : oEmbed public, aucun token requis
+
+---
+
+## Modifier les vidéos
+
+**Page d'accueil** (`index.html`) — tableau `videos` dans le script :
+```js
+const videos = ["ID_YOUTUBE_1", "ID_YOUTUBE_2"];
 ```
 
-## Navigation du site
+**Page Vidéo** (`pages/video.html`) — objet `slotVideos` dans le script :
+```js
+const slotVideos = {
+  focus: [
+    "https://www.instagram.com/p/XXXXX/embed",
+    // ajoute ici
+  ],
+  trottoir: [
+    "https://www.instagram.com/p/XXXXX/embed",
+    // ajoute ici
+  ]
+};
+```
 
-- **Logo GOTCHA**: Cliquable de n'importe quelle page → retour à l'accueil
-- **Barre de navigation**: Vidéo, Histoire, Carte, Contact (visible sur toutes les pages)
-- **Scrollable**: Le contenu défile naturellement avec la molette/trackpad
+---
 
-## Contact & Réseaux sociaux
+## Réseaux
 
-### Page Contact simplifiée
-La page `pages/contact.html` affiche désormais:
-- **Chatbot IA** - Assistant local pour répondre aux questions
-- **Linktree** - Tous les liens centralisés: [linktr.ee/mediagotchaproductions](https://linktr.ee/mediagotchaproductions)
-
-### Réseaux disponibles
-- 📱 Instagram: @gotcha_media
-- 🎵 TikTok: @gotcha_media
-- 📺 YouTube: Chaîne GOTCHA
-- 🔴 Twitch: @gotcha_media (livestreams)
-- 🔗 Linktree: linktr.ee/mediagotchaproductions
-
-### Avec GitHub Pages
-
-1. Allez dans les paramètres du repository (`Settings` → `Pages`)
-2. Sélectionnez `Deploy from a branch` → `main` → `/root`
-3. Votre site sera accessible à `https://Benjylem.github.io/YnovGotcha_website/`
-
-### Avec un serveur/hébergeur
-
-Transférez les fichiers via SFTP ou Git sur votre serveur.
-
-## Notes techniques
-
-- Pas de backend requis (HTML/CSS/JS pur)
-- Responsive sur mobile, tablette et desktop
-- Navigation fluide avec logo cliquable depuis toutes les pages
-- Thème dark moderne avec accents cyan
-- **Intégration Twitch Live** - Détection automatique du statut de la chaîne
-- **Chatbot IA local** - 12 réponses pré-configurées, aucune API externe payante
+- Instagram : [@gotcha_media](https://instagram.com/gotcha_media)
+- TikTok : @gotcha_media
+- Twitch : [gotcha_media](https://twitch.tv/gotcha_media)
+- Linktree : [linktr.ee/mediagotchaproductions](https://linktr.ee/mediagotchaproductions)
